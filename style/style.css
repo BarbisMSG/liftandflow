@@ -1,0 +1,89 @@
+body {
+    background: #fafafa;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+header,
+footer {
+    background-color: #6f6c69;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    color: #fff8e5;
+}
+
+h1 {
+    font-family: "Sedgwick Ave Display", cursive;
+    font-size: 40px;
+    padding-top: 10px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 140px);
+}
+
+.h2 {
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+button {
+    margin: 15px;
+    border-radius: 8px;
+    background-color: #6f6c69;
+    color: #ebeef0;
+    font-size: 20px;
+    font-family: "Sedgwick Ave Display", cursive;
+    padding: 3px;
+}
+
+input,
+select {
+    margin: 10px;
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+}
+
+label {
+    color: #333;
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+}
+
+/*Pantalla de cálculo para déficit o superávit calórico*/
+.resultados {
+    display: none;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 140px);
+}
+
+/*Cálculo calórico en forma de card*/
+.cardCalculo {
+    width: 300px;
+    height: 100px;
+    border: solid 3px black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #778899;
+    color: #ebeef0;
+}

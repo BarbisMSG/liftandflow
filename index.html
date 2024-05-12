@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/favicon" href="img/favicon-32x32.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fit & Flow</title>
+        <!--Roboto -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+            rel="stylesheet"
+        />
+        <!--Sedgwick Ave Display-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style/style.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Fit & Flow</h1>
+        </header>
+        <main id="main">
+            <h2 class="h2">
+                Completá los datos para obtener tu cálculo calórico
+            </h2>
+            <label for="nombre">Nombre</label>
+            <input type="text" placeholder="Nombre" id="nombre" />
+            <label for="peso">Peso</label>
+            <input type="text" placeholder="Peso" id="peso" />
+            <label for="alturaCm">Altura en cm</label>
+            <input type="text" placeholder="Altura en cm" id="alturaCm" />
+            <label for="edad">Edad</label>
+            <input type="text" placeholder="Edad" id="edad" />
+            <label for="sexo">Sexo</label>
+            <select name="sexo" id="sexo">
+                <option value=""></option>
+                <option value="femenino">F</option>
+                <option value="masculino">M</option>
+            </select>
+            <button id="btnDeficit">Deficit</button>
+            <button id="btnSuperavit">Superavit</button>
+        </main>
+        <!--Resultado déficit/superavit-->
+        <section class="resultados" id="resultados">
+            <h2 id="calculoResultado" class="h2"></h2>
+        </section>
+        <footer><p>© Barbis 2024</p></footer>
+        <script src="main.js"></script>
+    </body>
+</html>
