@@ -108,6 +108,7 @@ label {
     font-family: "Roboto", sans-serif;
     background-color: #556b2f;
     color: #fafafa;
+    margin: 15px;
 }
 
 /*Pantalla que da el cálculo de calorías y proteínas*/
