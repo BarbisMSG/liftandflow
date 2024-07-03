@@ -22,8 +22,9 @@
         <link rel="stylesheet" href="style/style.css" />
     </head>
     <body>
-        <header>
+        <header id="header">
             <h1>Lift & Flow</h1>
+            <img src="img/noche.png" alt="" class="noche" id="modoNoche" />
         </header>
         <main id="main">
             <h2 class="h2">
@@ -32,27 +33,27 @@
             <label for="nombre">Nombre</label>
             <input type="text" placeholder="Nombre" id="nombre" />
             <label for="peso">Peso</label>
-            <input type="text" placeholder="Peso" id="peso" />
+            <input type="number" placeholder="Peso" id="peso" />
             <label for="alturaCm">Altura en cm</label>
-            <input type="text" placeholder="Altura en cm" id="alturaCm" />
+            <input type="number" placeholder="Altura en cm" id="alturaCm" />
             <label for="edad">Edad</label>
-            <input type="text" placeholder="Edad" id="edad" />
+            <input type="number" placeholder="Edad" id="edad" />
             <label for="sexo">Sexo</label>
             <select name="sexo" id="sexo">
                 <option value=""></option>
-                <option value="femenino">F</option>
-                <option value="masculino">M</option>
+                <option value="F">F</option>
+                <option value="M">M</option>
             </select>
-            <button id="btnDeficit">Deficit</button>
-            <button id="btnSuperavit">Superavit</button>
+            <button id="btnIngresoDatos">Confirmar datos</button>
         </main>
-        <!--Resultado déficit/superavit-->
+        <!--Pantalla de datos + deficit/superavit calorico-->
         <section class="resultados" id="resultados">
-            <h2 id="calculoResultado" class="h2">
-                Este es tu cálculo calórico
-            </h2>
+            <h2 id="calculoResultado" class="h2">Estos son tus datos</h2>
+            <div id="pantallaObjeto" class="pantallaObjeto"></div>
+            <p id="resultadoCalculadora" class="resultadoCalculadora"></p>
+            <button id="btnVolver">Volver</button>
         </section>
-        <footer><p>© Barbis 2024</p></footer>
+        <footer id="footer"><p>© Barbis 2024</p></footer>
         <script src="main.js"></script>
     </body>
 </html>
