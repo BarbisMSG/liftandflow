@@ -76,7 +76,6 @@ let cards = () => {
             <h4>${dato.sexo}</h4>
             <button id="btnDeficit" onclick="deficitCalorico(${dato.peso})">Deficit</button>
             <button id="btnSuperavit" onclick="superavitCalorico()">Superavit</button>
-            </div>
             <p id="resultadoCalculadora" class="resultadoCalculadora"></p>
         </div>`;
         pantallaObjeto.innerHTML += modelo;
