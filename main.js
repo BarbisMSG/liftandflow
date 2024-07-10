@@ -17,7 +17,8 @@ let pantallaObjeto = document.getElementById("pantallaObjeto");
 let btnDeficit = document.getElementById("btnDeficit");
 let btnSuperavit = document.getElementById("btnSuperavit");
 let btnVolver = document.getElementById("btnVolver");
-let resultadoCalculadora = document.getElementById("resultadoCalculadora");
+let resultadoProteina = document.getElementById("resultadoProteina");
+let resultadoCalorias = document.getElementById("resultadosCalorias");
 let footer = document.getElementById("footer");
 
 //Modo Noche
@@ -35,16 +36,19 @@ btnIngresoDatos.addEventListener("click", () => {
         peso.value == "" ||
         alturaCm.value == "" ||
         edad.value == "" ||
-        sexo.value == ""
+        sexo.value == "" ||
+        peso.value <= 0 ||
+        alturaCm <= 0 ||
+        edad.value <= 0
     ) {
-        alert("por favor, completá todos los campos con datos");
+        alert("por favor, completá todos los campos con datos válidos");
     } else {
         //armo el objeto
         let dato = {
             nombre: nombre.value,
             peso: parseFloat(peso.value),
-            alturaCm: parseInt(alturaCm.value),
-            edad: parseInt(edad.value),
+            alturaCm: alturaCm.value,
+            edad: edad.value,
             sexo: sexo.value,
         };
         //pantalla de resultados pasa de none a flex
@@ -53,7 +57,7 @@ btnIngresoDatos.addEventListener("click", () => {
         resultados.style.display = "flex";
         main.style.display = "none";
         datos.push(dato);
-        console.log(typeof dato.peso, typeof dato.alturaCm, typeof dato.edad);
+        console.log("1 desde ingreso", typeof dato.peso);
         console.log("datos ingresados");
         nombre.value = "";
         peso.value = "";
@@ -74,80 +78,59 @@ let cards = () => {
             <h4>${dato.alturaCm} cm</h4>
             <h4>${dato.edad}</h4>
             <h4>${dato.sexo}</h4>
-            <button id="btnDeficit" onclick="deficitCalorico(${dato.peso})">Deficit</button>
-            <button id="btnSuperavit" onclick="superavitCalorico(${dato.peso})">Superavit</button>
-            <div>
-            <p id="resultadoCalculadora" class="resultadoCalculadora"></p>
-            </div>
         </div>`;
         pantallaObjeto.innerHTML += modelo;
+        console.log("2 desde cards", typeof dato.peso);
     });
     //localStorage como cadena string
     localStorage.setItem("localGuardado", JSON.stringify(datos));
 };
 
 //Const deficit calórico
-const deficitCalorico = (peso) => {
+const deficitCalorico = (dato) => {
+    console.log("3 desde funcion", typeof dato.peso);
     // Convierte el peso a número (si no lo es ya)
-    const pesoNumerico = parseFloat(peso);
-
-    // Verifica si la conversión fue exitosa y si el valor es mayor que cero
-    if (!isNaN(pesoNumerico) && pesoNumerico > 0) {
-        // Realiza el cálculo de proteína diaria
-        const proteinaDiaria = pesoNumerico * 1.6;
-
-        // Muestra el resultado en pantalla con resultadoCalculadora instanciado
-        resultadoCalculadora.innerHTML +=
-            "Tu cálculo de proteína es de " +
-            proteinaDiaria.toFixed(0) +
-            " gramos diarios";
-        console.log(
-            "Tu cálculo de proteína es de " +
-                proteinaDiaria.toFixed(0) +
-                " gramos diarios"
-        );
-    } else {
-        console.log(
-            "El valor de peso no es un número válido o es menor o igual a cero."
-        );
-    }
+    const pesoNumerico = parseFloat(dato.peso);
+    const proteinaDiaria = pesoNumerico * 1.6;
+    // Muestra el resultado en pantalla con resultadoCalculadora instanciado
+    resultadoProteina.innerHTML =
+        "Tu cálculo de proteína es de " +
+        proteinaDiaria.toFixed(0) +
+        " gramos diarios";
 };
 
-//Const btn superavit onclick
-const superavitCalorico = (peso) => {
-    // Convierte el peso a número (si no lo es ya)
-    const pesoNumerico = parseFloat(peso);
-
-    // Verifica si la conversión fue exitosa y si el valor es mayor que cero
-    if (!isNaN(pesoNumerico) && pesoNumerico > 0) {
-        // Realiza el cálculo de proteína diaria
-        const proteinaDiaria = pesoNumerico * 1.6;
-
-        // Muestra el resultado en pantalla con resultadoCalculadora instanciado
-        resultadoCalculadora.innerHTML +=
-            "Tu cálculo de proteína es de " +
-            proteinaDiaria.toFixed(0) +
-            " gramos diarios";
-        console.log(
-            "Tu cálculo de proteína es de " +
-                proteinaDiaria.toFixed(0) +
-                " gramos diarios"
-        );
-    } else {
-        console.log(
-            "El valor de peso no es un número válido o es menor o igual a cero."
-        );
-    }
-};
+//Evento sobre btn deficit
+btnDeficit.addEventListener("click", () => {
+    const ultimoDato = datos[datos.length - 1];
+    deficitCalorico(ultimoDato);
+});
 
 //Evento sobre btn volver a pantalla inicial
 btnVolver.addEventListener("click", () => {
     main.style.display = "flex";
     resultados.style.display = "none";
+    console.log("soy btnVolver");
 });
 
+//Const superavit
+const superavitCalorico = (peso) => {
+    // Convierte el peso a número (si no lo es ya)
+    const pesoNumerico = parseFloat(peso);
+    const proteinaDiaria = pesoNumerico * 1.6;
+    // Muestra el resultado en pantalla con resultadoCalculadora instanciado
+
+    resultadoCalculadora.innerHTML =
+        "Tu cálculo de proteína es de " +
+        proteinaDiaria.toFixed(0) +
+        " gramos diarios";
+    console.log(
+        "Tu cálculo de proteína es de " +
+            proteinaDiaria.toFixed(0) +
+            " gramos diarios"
+    );
+};
+
 //recupero el localstorage con un get y lo convierto en un objeto nuevamente
-//A esto le vamos a poner una frase motivsadora o algo así
 let dataRecuperada = localStorage.getItem("localGuardado");
 dataRecuperada = JSON.parse(dataRecuperada);
 if (dataRecuperada.length > 0) {

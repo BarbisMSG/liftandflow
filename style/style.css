@@ -21,8 +21,9 @@ header {
 .lyf {
     width: 70px;
     height: 70px;
-    margin-left: 5px;
-    padding-top: 5px;
+    margin: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 .noche {
@@ -111,11 +112,18 @@ label {
     margin: 15px;
 }
 
+.pantallaBotones {
+    background: red;
+    display: flex;
+    flex-direction: row;
+}
+
 /*Pantalla que da el cálculo de calorías y proteínas*/
 .resultadoCalculadora {
     font-family: "Roboto", sans-serif;
     color: #fafafa;
-    background-color: red;
+    font-size: 15px;
+    background-color: #6b8e23;
 }
 
 footer {

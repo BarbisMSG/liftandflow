@@ -42,16 +42,22 @@
             <label for="sexo">Sexo</label>
             <select name="sexo" id="sexo">
                 <option value=""></option>
-                <option value="F">F</option>
-                <option value="M">M</option>
+                <option value="f">F</option>
+                <option value="m">M</option>
             </select>
             <button id="btnIngresoDatos">Confirmar datos</button>
         </main>
         <!--Pantalla de datos + deficit/superavit calorico-->
         <section class="resultados" id="resultados">
             <h2 id="calculoResultado" class="h2">Estos son tus datos</h2>
-            <div id="pantallaObjeto" class="pantallaObjeto"></div>
-            <button id="btnVolver">Volver</button>
+            <div id="pantallaObjeto"></div>
+            <div class="pantallaBotones">
+                <button id="btnDeficit">Deficit</button>
+                <button id="btnSuperavit">Superavit</button>
+                <button id="btnVolver">Volver</button>
+            </div>
+            <p id="resultadoProteina" class="resultadoCalculadora"></p>
+            <p id="resultadoCalorias" class="resultadoCalculadora"></p>
         </section>
         <footer id="footer"><p>© Barbis 2024</p></footer>
         <script src="main.js"></script>
