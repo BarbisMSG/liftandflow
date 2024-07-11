@@ -96,8 +96,8 @@ label {
 
 /*Datos cargados en el formulario, que se imprimen en HTML con map*/
 .cards {
-    width: 450px;
-    height: 80px;
+    width: 300px;
+    height: 100px;
     padding: 5px;
     border-radius: 5px;
     border: solid 3px black;
@@ -113,7 +113,6 @@ label {
 }
 
 .pantallaBotones {
-    background: red;
     display: flex;
     flex-direction: row;
 }

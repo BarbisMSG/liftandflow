@@ -18,7 +18,7 @@ let btnDeficit = document.getElementById("btnDeficit");
 let btnSuperavit = document.getElementById("btnSuperavit");
 let btnVolver = document.getElementById("btnVolver");
 let resultadoProteina = document.getElementById("resultadoProteina");
-let resultadoCalorias = document.getElementById("resultadosCalorias");
+let resultadoCalorias = document.getElementById("resultadoCalorias");
 let footer = document.getElementById("footer");
 
 //Modo Noche
@@ -57,7 +57,6 @@ btnIngresoDatos.addEventListener("click", () => {
         resultados.style.display = "flex";
         main.style.display = "none";
         datos.push(dato);
-        console.log("1 desde ingreso", typeof dato.peso);
         console.log("datos ingresados");
         nombre.value = "";
         peso.value = "";
@@ -80,7 +79,6 @@ let cards = () => {
             <h4>${dato.sexo}</h4>
         </div>`;
         pantallaObjeto.innerHTML += modelo;
-        console.log("2 desde cards", typeof dato.peso);
     });
     //localStorage como cadena string
     localStorage.setItem("localGuardado", JSON.stringify(datos));
@@ -88,47 +86,111 @@ let cards = () => {
 
 //Const deficit calórico
 const deficitCalorico = (dato) => {
-    console.log("3 desde funcion", typeof dato.peso);
-    // Convierte el peso a número (si no lo es ya)
+    // Convierte número
     const pesoNumerico = parseFloat(dato.peso);
     const proteinaDiaria = pesoNumerico * 1.6;
+    const edadDeficit = parseFloat(dato.edad);
+    const alturaDeficit = parseFloat(dato.alturaCm);
     // Muestra el resultado en pantalla con resultadoCalculadora instanciado
-    resultadoProteina.innerHTML =
-        "Tu cálculo de proteína es de " +
-        proteinaDiaria.toFixed(0) +
-        " gramos diarios";
+    if (dato.sexo == "F") {
+        resultadoProteina.innerHTML =
+            "Tu cálculo de proteína es de " +
+            proteinaDiaria.toFixed(0) +
+            " gramos diarios";
+        //Calcula TMB al que le resta 200 calorias
+        resultadoCalorias.innerHTML =
+            "Tu consumo de calorías diarias debe ser " +
+            (
+                447.593 +
+                9.247 * pesoNumerico +
+                3.098 * alturaDeficit -
+                4.33 * edadDeficit -
+                200
+            ).toFixed(0);
+        console.log("Tu sexo es FEMENINO");
+    } else {
+        resultadoProteina.innerHTML =
+            "Tu cálculo de proteína es de " +
+            proteinaDiaria.toFixed(0) +
+            " gramos diarios";
+        //Calcula TMB al que le resta 200 calorias
+        resultadoCalorias.innerHTML =
+            "Tu consumo de calorías diarias debe ser " +
+            (
+                88.362 +
+                13.397 * pesoNumerico +
+                4.799 * alturaDeficit -
+                5.677 * edadDeficit -
+                200
+            ).toFixed(0);
+        console.log("Tu sexo es MASCULINO");
+    }
+};
+
+//Const superavit calórico
+const superavitCalorico = (dato) => {
+    // Convierte número
+    const pesoNumerico = parseFloat(dato.peso);
+    const proteinaDiaria = pesoNumerico * 1.6;
+    const edadDeficit = parseFloat(dato.edad);
+    const alturaDeficit = parseFloat(dato.alturaCm);
+    // Muestra el resultado en pantalla con resultadoCalculadora instanciado
+    if (dato.sexo == "F") {
+        resultadoProteina.innerHTML =
+            "Tu cálculo de proteína es de " +
+            proteinaDiaria.toFixed(0) +
+            " gramos diarios";
+        //Calcula TMB al que le resta 200 calorias
+        resultadoCalorias.innerHTML =
+            "Tu consumo de calorías diarias debe ser " +
+            (
+                447.593 +
+                9.247 * pesoNumerico +
+                3.098 * alturaDeficit -
+                4.33 * edadDeficit +
+                500
+            ).toFixed(0);
+        console.log("Tu sexo es FEMENINO");
+    } else {
+        resultadoProteina.innerHTML =
+            "Tu cálculo de proteína es de " +
+            proteinaDiaria.toFixed(0) +
+            " gramos diarios";
+        //Calcula TMB al que le resta 200 calorias
+        resultadoCalorias.innerHTML =
+            "Tu consumo de calorías diarias debe ser " +
+            (
+                88.362 +
+                13.397 * pesoNumerico +
+                4.799 * alturaDeficit -
+                5.677 * edadDeficit +
+                500
+            ).toFixed(0);
+        console.log("Tu sexo es MASCULINO");
+    }
 };
 
 //Evento sobre btn deficit
 btnDeficit.addEventListener("click", () => {
+    //Método de array para buscar el último ingreso y sobre ese aplicar la fórmula
+    //Aplicamos sobre el último dato que se pusheo al array datos la const deficitCalorico
     const ultimoDato = datos[datos.length - 1];
     deficitCalorico(ultimoDato);
+});
+
+//Evento sobre btn superavit
+btnSuperavit.addEventListener("click", () => {
+    //Método de array para buscar el último ingreso y sobre ese aplicar la fórmula
+    //Aplicamos sobre el último dato que se pusheo al array datos la const deficitCalorico
+    const ultimoDato = datos[datos.length - 1];
+    superavitCalorico(ultimoDato);
 });
 
 //Evento sobre btn volver a pantalla inicial
 btnVolver.addEventListener("click", () => {
     main.style.display = "flex";
     resultados.style.display = "none";
-    console.log("soy btnVolver");
 });
-
-//Const superavit
-const superavitCalorico = (peso) => {
-    // Convierte el peso a número (si no lo es ya)
-    const pesoNumerico = parseFloat(peso);
-    const proteinaDiaria = pesoNumerico * 1.6;
-    // Muestra el resultado en pantalla con resultadoCalculadora instanciado
-
-    resultadoCalculadora.innerHTML =
-        "Tu cálculo de proteína es de " +
-        proteinaDiaria.toFixed(0) +
-        " gramos diarios";
-    console.log(
-        "Tu cálculo de proteína es de " +
-            proteinaDiaria.toFixed(0) +
-            " gramos diarios"
-    );
-};
 
 //recupero el localstorage con un get y lo convierto en un objeto nuevamente
 let dataRecuperada = localStorage.getItem("localGuardado");
@@ -137,89 +199,3 @@ if (dataRecuperada.length > 0) {
     datos = dataRecuperada;
 }
 console.log("data recuperada:", dataRecuperada.length);
-
-//Const para déficit calórico
-// const calculoDeficit = () => {
-//     if (sexo.value == "femenino") {
-//         calculoResultado.innerHTML =
-//             // `<h3>Hola ${nombre.value}</h3>
-//             // <p>Tu calculo calórico para Deficit dio:</p>
-//             // <p>1700 Calorias</p>
-//             // <p>Tu consumo de proteina diaraia debe ser de :</p>
-//             // <p>128gr</p>`;
-//             "Hola " +
-//             nombre.value +
-//             "Tu consumo de calorías diarias debe ser de: " +
-//             (
-//                 447.593 +
-//                 9.247 * peso.value +
-//                 3.098 * alturaCm.value -
-//                 4.33 * edad.value
-//             ).toFixed(2) +
-//             " y el cálculo de proteinas diarias es de: " +
-//             peso.value * 1.6;
-//     } else {
-//         calculoResultado.innerHTML =
-//             "Hola " +
-//             nombre.value +
-//             " Tu consumo de calorías diarias debe ser de: " +
-//             (
-//                 88.362 +
-//                 13.397 * peso.value +
-//                 4.799 * alturaCm.value -
-//                 5.677 * edad.value
-//             ).toFixed(2) +
-//             " y el cálculo de proteinas diarias es de: " +
-//             peso.value * 1.6;
-//     }
-// };
-
-// //Btn para el calculo de superavit
-// btnSuperavit.addEventListener("click", () => {
-//     if (
-//         nombre.value == "" ||
-//         peso.value == "" ||
-//         alturaCm.value == "" ||
-//         edad.value == "" ||
-//         sexo.value == ""
-//     ) {
-//         alert("por favor, completá todos los campos");
-//     } else {
-//         resultados.style.display = "flex";
-//         main.style.display = "none";
-//         calculoSuperavit();
-//     }
-// });
-
-// //Const para superávit calórico
-// const calculoSuperavit = () => {
-//     if (sexo.value == "femenino") {
-//         calculoResultado.innerHTML =
-//             "Hola " +
-//             nombre.value +
-//             " Tu consumo de calorías diarias debe ser de: " +
-//             (
-//                 447.593 +
-//                 9.247 * peso.value +
-//                 3.098 * alturaCm.value -
-//                 4.33 * edad.value +
-//                 500
-//             ).toFixed(2) +
-//             " y el cálculo de proteinas diarias es de: " +
-//             peso.value * 1.6;
-//     } else {
-//         calculoResultado.innerHTML =
-//             "Hola " +
-//             nombre.value +
-//             " Tu consumo de calorías diarias debe ser de: " +
-//             (
-//                 88.362 +
-//                 13.397 * peso.value +
-//                 4.799 * alturaCm.value -
-//                 5.677 * edad.value +
-//                 500
-//             ).toFixed(2) +
-//             " y el cálculo de proteinas diarias es de: " +
-//             peso.value * 1.6;
-//     }
-// };
