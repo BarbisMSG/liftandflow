@@ -1,5 +1,6 @@
 //Array de datos para calcular el deficit/superavit calórico
 let datos = [];
+let count = 0;
 
 //Instanciamos
 let modoNoche = document.getElementById("modoNoche");
@@ -43,6 +44,11 @@ btnIngresoDatos.addEventListener("click", () => {
     ) {
         alert("por favor, completá todos los campos con datos válidos");
     } else {
+        //pantalla de resultados pasa de none a flex
+        //main pasa de flex a none
+        //se envian los datos al array
+        resultados.style.display = "flex";
+        main.style.display = "none";
         //armo el objeto
         let dato = {
             nombre: nombre.value,
@@ -50,12 +56,8 @@ btnIngresoDatos.addEventListener("click", () => {
             alturaCm: alturaCm.value,
             edad: edad.value,
             sexo: sexo.value,
+            id: "persona" + count,
         };
-        //pantalla de resultados pasa de none a flex
-        //main pasa de flex a none
-        //se envian los datos al array
-        resultados.style.display = "flex";
-        main.style.display = "none";
         datos.push(dato);
         console.log("datos ingresados");
         nombre.value = "";
@@ -67,6 +69,7 @@ btnIngresoDatos.addEventListener("click", () => {
     }
 });
 
+//Función cards, hace el map e itera los datos ingresados
 let cards = () => {
     pantallaObjeto.innerHTML = " ";
     let modelo = "";
@@ -80,8 +83,6 @@ let cards = () => {
         </div>`;
         pantallaObjeto.innerHTML += modelo;
     });
-    //localStorage como cadena string
-    localStorage.setItem("localGuardado", JSON.stringify(datos));
 };
 
 //Const deficit calórico
@@ -181,21 +182,18 @@ btnDeficit.addEventListener("click", () => {
 //Evento sobre btn superavit
 btnSuperavit.addEventListener("click", () => {
     //Método de array para buscar el último ingreso y sobre ese aplicar la fórmula
-    //Aplicamos sobre el último dato que se pusheo al array datos la const deficitCalorico
+    //Aplicamos sobre el último dato que se pusheo al array datos la const superavitCalorico
     const ultimoDato = datos[datos.length - 1];
     superavitCalorico(ultimoDato);
 });
 
 //Evento sobre btn volver a pantalla inicial
+//Además vacía el array, ya que no hay localStorage
+//Limpia los p resultadosCalorias y resultadosProteinas
 btnVolver.addEventListener("click", () => {
     main.style.display = "flex";
     resultados.style.display = "none";
+    datos = [];
+    resultadoCalorias.innerHTML = " ";
+    resultadoProteina.innerHTML = " ";
 });
-
-//recupero el localstorage con un get y lo convierto en un objeto nuevamente
-let dataRecuperada = localStorage.getItem("localGuardado");
-dataRecuperada = JSON.parse(dataRecuperada);
-if (dataRecuperada.length > 0) {
-    datos = dataRecuperada;
-}
-console.log("data recuperada:", dataRecuperada.length);
