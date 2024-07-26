@@ -28,18 +28,16 @@
             <img src="img/noche.png" alt="" class="noche" id="modoNoche" />
         </header>
         <main id="main">
-            <h2 class="h2">
-                Completá los datos para obtener tu cálculo calórico
-            </h2>
-            <label for="nombre">Nombre</label>
-            <input type="text" placeholder="Nombre" id="nombre" />
-            <label for="peso">Peso</label>
-            <input type="number" placeholder="Peso" id="peso" />
-            <label for="alturaCm">Altura en cm</label>
-            <input type="number" placeholder="Altura en cm" id="alturaCm" />
-            <label for="edad">Edad</label>
-            <input type="number" placeholder="Edad" id="edad" />
-            <label for="sexo">Sexo</label>
+            <h2 class="h2">Obtené tu cálculo calórico</h2>
+            <label for="nombre" id="labelNombre">Nombre</label>
+            <input type="text" id="nombre" />
+            <label for="peso" id="labelPeso">Peso</label>
+            <input type="number" id="peso" />
+            <label for="alturaCm" id="labelAltura">Altura en cm</label>
+            <input type="number" id="alturaCm" />
+            <label for="edad" id="labelEdad">Edad</label>
+            <input type="number" id="edad" />
+            <label for="sexo" id="labelSexo">Sexo</label>
             <select name="sexo" id="sexo">
                 <option value=""></option>
                 <option value="F">Femenino</option>
@@ -49,7 +47,7 @@
         </main>
         <!--Pantalla de datos + deficit/superavit calorico-->
         <section class="resultados" id="resultados">
-            <h2 id="calculoResultado" class="h2">Estos son tus datos</h2>
+            <h2 id="calculoResultado" class="h2">Cálculo calórico para</h2>
             <div id="pantallaObjeto"></div>
             <div class="pantallaBotones">
                 <button id="btnDeficit">Deficit</button>
@@ -59,7 +57,7 @@
             <p id="resultadoProteina" class="resultadoCalculadora"></p>
             <p id="resultadoCalorias" class="resultadoCalculadora"></p>
         </section>
-        <footer id="footer"><p>© Barbis 2024</p></footer>
+        <footer id="footer"><p>© Marcos Serrao Gomez 2024</p></footer>
         <script src="main.js"></script>
     </body>
 </html>

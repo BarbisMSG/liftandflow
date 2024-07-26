@@ -7,10 +7,15 @@ let modoNoche = document.getElementById("modoNoche");
 let header = document.getElementById("header");
 let main = document.getElementById("main");
 let nombre = document.getElementById("nombre");
+let labelNombre = document.getElementById("labelNombre");
 let peso = document.getElementById("peso");
+let labelPeso = document.getElementById("labelPeso");
 let alturaCm = document.getElementById("alturaCm");
+let labelAltura = document.getElementById("labelAltura");
 let edad = document.getElementById("edad");
+let labelEdad = document.getElementById("labelEdad");
 let sexo = document.getElementById("sexo");
+let labelSexo = document.getElementById("labelSexo");
 let btnIngresoDatos = document.getElementById("btnIngresoDatos");
 let resultados = document.getElementById("resultados");
 let calculoResultado = document.getElementById("calculoResultado");
@@ -28,6 +33,15 @@ modoNoche.addEventListener("click", () => {
     footer.classList.toggle("modoNoche");
     main.classList.toggle("modoNoche");
     resultados.classList.toggle("modoNoche");
+    labelNombre.classList.toggle("modoNoche");
+    labelPeso.classList.toggle("modoNoche");
+    labelAltura.classList.toggle("modoNoche");
+    labelEdad.classList.toggle("modoNoche");
+    labelSexo.classList.toggle("modoNoche");
+    resultadoProteina.classList.toggle("modoNoche");
+    resultadoCalorias.classList.toggle("modoNoche");
+    resultadoProteina.classList.remove("resultadoCalculadora");
+    resultadoCalorias.classList.remove("resultadoCalculadora");
 });
 
 //Btn para el ingreso de datos
@@ -42,7 +56,7 @@ btnIngresoDatos.addEventListener("click", () => {
         alturaCm <= 0 ||
         edad.value <= 0
     ) {
-        alert("por favor, completá todos los campos con datos válidos");
+        alert("Por favor, completá todos los campos con datos válidos");
     } else {
         //pantalla de resultados pasa de none a flex
         //main pasa de flex a none
@@ -78,7 +92,7 @@ let cards = () => {
             <h3>${dato.nombre}</h3>
             <h4>${dato.peso} kg</h4>
             <h4>${dato.alturaCm} cm</h4>
-            <h4>${dato.edad}</h4>
+            <h4>${dato.edad} años</h4>
             <h4>${dato.sexo}</h4>
         </div>`;
         pantallaObjeto.innerHTML += modelo;
@@ -108,7 +122,6 @@ const deficitCalorico = (dato) => {
                 4.33 * edadDeficit -
                 200
             ).toFixed(0);
-        console.log("Tu sexo es FEMENINO");
     } else {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
@@ -124,7 +137,6 @@ const deficitCalorico = (dato) => {
                 5.677 * edadDeficit -
                 200
             ).toFixed(0);
-        console.log("Tu sexo es MASCULINO");
     }
 };
 
@@ -151,7 +163,6 @@ const superavitCalorico = (dato) => {
                 4.33 * edadDeficit +
                 500
             ).toFixed(0);
-        console.log("Tu sexo es FEMENINO");
     } else {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
@@ -167,7 +178,6 @@ const superavitCalorico = (dato) => {
                 5.677 * edadDeficit +
                 500
             ).toFixed(0);
-        console.log("Tu sexo es MASCULINO");
     }
 };
 
