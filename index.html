@@ -23,11 +23,34 @@
     </head>
     <body>
         <header id="header">
-            <img src="img/lyf.webp" alt="" class="lyf" />
+            <img src="img/lyf.webp" alt="" class="lyf" id="lyfImg" />
             <h1>Lift & Flow</h1>
             <img src="img/noche.png" alt="" class="noche" id="modoNoche" />
         </header>
         <main id="main">
+            <h2 class="h2">TMB (Tasa Metabólica Basal)</h2>
+            <p>Es como el “combustible mínimo” para tu cuerpo en reposo</p>
+            <p>Calculamos la TMB considerando edad, sexo, peso y altura</p>
+            <p>
+                Te ayuda a saber cuántas calorías necesitas para funciones
+                vitales
+            </p>
+            <p>Ajusta tu alimentación y actividad física según la TMB</p>
+            <p>Déficit Calórico: consumir menos calorías de las necesarias</p>
+            <p>
+                Resultado: pérdida de peso y ganancia muscular al realizar
+                ejercicios de fuerza
+            </p>
+            <p>Superávit Calórico:consumir más calorías de las necesarias</p>
+            <p>
+                Resultado: Aumento de peso y ganancia muscular al realizar
+                ejercicios de fuerza
+            </p>
+            <h2 class="lifYFlow">Bienvenido a Lift & Flow</h2>
+
+            <button id="ingresarFormulario">Cargá tus datos</button>
+        </main>
+        <section id="formularioDatos" class="formulario">
             <h2 class="h2">Obtené tu cálculo calórico</h2>
             <label for="nombre" id="labelNombre">Nombre</label>
             <input type="text" id="nombre" />
@@ -44,7 +67,7 @@
                 <option value="M">Masculino</option>
             </select>
             <button id="btnIngresoDatos">Confirmar datos</button>
-        </main>
+        </section>
         <!--Pantalla de datos + deficit/superavit calorico-->
         <section class="resultados" id="resultados">
             <h2 id="calculoResultado" class="h2">Cálculo calórico para</h2>

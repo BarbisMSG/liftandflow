@@ -4,8 +4,11 @@ let count = 0;
 
 //Instanciamos
 let modoNoche = document.getElementById("modoNoche");
+let lyfImg = document.getElementById("lyfImg");
 let header = document.getElementById("header");
 let main = document.getElementById("main");
+let ingresarFormulario = document.getElementById("ingresarFormulario");
+let formularioDatos = document.getElementById("formularioDatos");
 let nombre = document.getElementById("nombre");
 let labelNombre = document.getElementById("labelNombre");
 let peso = document.getElementById("peso");
@@ -27,10 +30,18 @@ let resultadoProteina = document.getElementById("resultadoProteina");
 let resultadoCalorias = document.getElementById("resultadoCalorias");
 let footer = document.getElementById("footer");
 
+//Img para volver a pantalla inicial
+lyfImg.addEventListener("click", () => {
+    main.style.display = "flex";
+    formularioDatos.style.display = "none";
+    resultados.style.display = "none";
+});
+
 //Modo Noche
 modoNoche.addEventListener("click", () => {
     header.classList.toggle("modoNoche");
     footer.classList.toggle("modoNoche");
+    formularioDatos.classList.toggle("modoNoche");
     main.classList.toggle("modoNoche");
     resultados.classList.toggle("modoNoche");
     labelNombre.classList.toggle("modoNoche");
@@ -42,6 +53,16 @@ modoNoche.addEventListener("click", () => {
     resultadoCalorias.classList.toggle("modoNoche");
     resultadoProteina.classList.remove("resultadoCalculadora");
     resultadoCalorias.classList.remove("resultadoCalculadora");
+});
+
+//Btn para pasar a pantalla de formulario
+ingresarFormulario.addEventListener("click", () => {
+    formularioDatos.style.display = "flex";
+    main.style.display = "none";
+    resultados.style.display = "none";
+    datos = [];
+    resultadoCalorias.innerHTML = " ";
+    resultadoProteina.innerHTML = " ";
 });
 
 //Btn para el ingreso de datos
@@ -63,6 +84,7 @@ btnIngresoDatos.addEventListener("click", () => {
         //se envian los datos al array
         resultados.style.display = "flex";
         main.style.display = "none";
+        formularioDatos.style.display = "none";
         //armo el objeto
         let dato = {
             nombre: nombre.value,
@@ -90,10 +112,10 @@ let cards = () => {
     datos.map((dato) => {
         modelo = `<div class='cards'>
             <h3>${dato.nombre}</h3>
-            <h4>${dato.peso} kg</h4>
-            <h4>${dato.alturaCm} cm</h4>
-            <h4>${dato.edad} años</h4>
-            <h4>${dato.sexo}</h4>
+            <h3>${dato.peso} kg</h3>
+            <h3>${dato.alturaCm} cm</h3>
+            <h3>${dato.edad} años</h3>
+            <h3> Sexo ${dato.sexo}</h3>
         </div>`;
         pantallaObjeto.innerHTML += modelo;
     });
@@ -112,7 +134,7 @@ const deficitCalorico = (dato) => {
             "Tu cálculo de proteína es de " +
             proteinaDiaria.toFixed(0) +
             " gramos diarios";
-        //Calcula TMB al que le resta 200 calorias
+        //Calcula TMB al que le resta 500 calorias para mujeres
         resultadoCalorias.innerHTML =
             "Tu consumo de calorías diarias debe ser " +
             (
@@ -120,14 +142,14 @@ const deficitCalorico = (dato) => {
                 9.247 * pesoNumerico +
                 3.098 * alturaDeficit -
                 4.33 * edadDeficit -
-                200
+                500
             ).toFixed(0);
     } else {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
             proteinaDiaria.toFixed(0) +
             " gramos diarios";
-        //Calcula TMB al que le resta 200 calorias
+        //Calcula TMB al que le resta 500 calorias para hombres
         resultadoCalorias.innerHTML =
             "Tu consumo de calorías diarias debe ser " +
             (
@@ -135,7 +157,7 @@ const deficitCalorico = (dato) => {
                 13.397 * pesoNumerico +
                 4.799 * alturaDeficit -
                 5.677 * edadDeficit -
-                200
+                500
             ).toFixed(0);
     }
 };
@@ -153,7 +175,7 @@ const superavitCalorico = (dato) => {
             "Tu cálculo de proteína es de " +
             proteinaDiaria.toFixed(0) +
             " gramos diarios";
-        //Calcula TMB al que le resta 200 calorias
+        //Calcula TMB al que le suma 500 calorias
         resultadoCalorias.innerHTML =
             "Tu consumo de calorías diarias debe ser " +
             (
@@ -168,7 +190,7 @@ const superavitCalorico = (dato) => {
             "Tu cálculo de proteína es de " +
             proteinaDiaria.toFixed(0) +
             " gramos diarios";
-        //Calcula TMB al que le resta 200 calorias
+        //Calcula TMB al que se le suma 500 calorias
         resultadoCalorias.innerHTML =
             "Tu consumo de calorías diarias debe ser " +
             (
@@ -201,7 +223,8 @@ btnSuperavit.addEventListener("click", () => {
 //Además vacía el array, ya que no hay localStorage
 //Limpia los p resultadosCalorias y resultadosProteinas
 btnVolver.addEventListener("click", () => {
-    main.style.display = "flex";
+    formularioDatos.style.display = "flex";
+    main.style.display = "none";
     resultados.style.display = "none";
     datos = [];
     resultadoCalorias.innerHTML = " ";

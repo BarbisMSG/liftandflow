@@ -18,17 +18,20 @@ header {
     color: #fff8e5;
 }
 
+/*Img izquierda Header*/
 .lyf {
     width: 70px;
     height: 70px;
     margin: 5px;
     padding-top: 3px;
     padding-bottom: 3px;
+    cursor: pointer;
 }
 
 .noche {
     width: 20px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 /*Modo Noche*/
@@ -43,9 +46,35 @@ h1 {
     font-size: 50px;
 }
 
-/*Pantalla inicial- formulario*/
+/*Pantalla inicial- explicación TMB*/
 main {
     display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 140px);
+    width: 100%;
+}
+
+/*p de la pantalla inicial. Explica TMB*/
+main p {
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+/*h2 Bienvenida*/
+.lifYFlow {
+    font-size: 30px;
+    font-family: "Sedgwick Ave Display", cursive;
+    color: #5f9ea0;
+}
+
+/*Formulario*/
+.formulario {
+    display: none;
     flex-direction: column;
     align-content: center;
     justify-content: center;
@@ -97,7 +126,7 @@ label {
 
 /*Datos cargados en el formulario, que se imprimen en HTML con map*/
 .cards {
-    width: 300px;
+    width: 400px;
     height: 100px;
     padding: 5px;
     border-radius: 5px;
@@ -107,10 +136,15 @@ label {
     align-items: center;
     justify-content: space-between;
     align-content: center;
-    font-family: "Roboto", sans-serif;
     background-color: #5f9ea0;
     color: #fafafa;
     margin: 15px;
+}
+
+/*Texto dentro de las cards*/
+h3 {
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
 }
 
 .pantallaBotones {
@@ -122,7 +156,7 @@ label {
 .resultadoCalculadora {
     font-family: "Roboto", sans-serif;
     color: #333;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 footer {
@@ -135,4 +169,97 @@ footer {
     align-items: center;
     color: #fff8e5;
     font-family: "Roboto", sans-serif;
+}
+
+/*Media query*/
+@media only screen and (max-width: 767px) {
+    /*H1 en el Header*/
+    h1 {
+        font-family: "Sedgwick Ave Display", cursive;
+        font-size: 35px;
+    }
+
+    /*Img izquierda Header*/
+    .lyf {
+        cursor: auto;
+    }
+
+    /*btn modoNoche*/
+    .noche {
+        cursor: auto;
+    }
+
+    /*Pantalla inicial- explicación TMB*/
+    main {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 140px);
+        width: 100%;
+    }
+
+    /*p de la pantalla inicial. Explica TMB*/
+    main p {
+        font-family: "Roboto", sans-serif;
+        font-size: 13px;
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    /*h2 Bienvenida*/
+    .lifYFlow {
+        font-size: 30px;
+        font-family: "Sedgwick Ave Display", cursive;
+        color: #5f9ea0;
+    }
+
+    /*Titulos de cada pantalla*/
+    .h2 {
+        font-family: "Roboto", sans-serif;
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-size: 13px;
+    }
+
+    button {
+        font-size: 17px;
+    }
+
+    .cards {
+    width: 300px;
+    height: 100px;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 3px black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    background-color: #5f9ea0;
+    color: #fafafa;
+    margin: 15px;
+
+    /*Texto dentro de las cards*/
+    h3 {
+        font-family: "Roboto", sans-serif;
+        font-size: 15px;
+    }
+
+    /*Pantalla que da el cálculo de calorías y proteínas*/
+    .resultadoCalculadora {
+        font-family: "Roboto", sans-serif;
+        color: #333;
+        font-size: 15px;
+    }
+
+    footer p {
+        font-size: 12px;
+        font-family: "Roboto", sans-serif;
+    }
 }
