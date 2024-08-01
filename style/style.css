@@ -172,7 +172,9 @@ footer {
 }
 
 /*Media query*/
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 767px),
+    (orientation: landscape),
+    screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) {
     /*H1 en el Header*/
     h1 {
         font-family: "Sedgwick Ave Display", cursive;
@@ -231,19 +233,20 @@ footer {
     }
 
     .cards {
-    width: 300px;
-    height: 100px;
-    padding: 5px;
-    border-radius: 5px;
-    border: solid 3px black;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    align-content: center;
-    background-color: #5f9ea0;
-    color: #fafafa;
-    margin: 15px;
+        width: 300px;
+        height: 100px;
+        padding: 5px;
+        border-radius: 5px;
+        border: solid 3px black;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        align-content: center;
+        background-color: #5f9ea0;
+        color: #fafafa;
+        margin: 15px;
+    }
 
     /*Texto dentro de las cards*/
     h3 {
