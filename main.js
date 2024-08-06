@@ -5,6 +5,7 @@ let count = 0;
 //Instanciamos
 let modoNoche = document.getElementById("modoNoche");
 let lyfImg = document.getElementById("lyfImg");
+let body = document.getElementById("body");
 let header = document.getElementById("header");
 let main = document.getElementById("main");
 let ingresarFormulario = document.getElementById("ingresarFormulario");
@@ -39,10 +40,10 @@ lyfImg.addEventListener("click", () => {
 
 //Modo Noche
 modoNoche.addEventListener("click", () => {
+    body.classList.toggle("modoNoche");
     header.classList.toggle("modoNoche");
     footer.classList.toggle("modoNoche");
     formularioDatos.classList.toggle("modoNoche");
-    main.classList.toggle("modoNoche");
     resultados.classList.toggle("modoNoche");
     labelNombre.classList.toggle("modoNoche");
     labelPeso.classList.toggle("modoNoche");
