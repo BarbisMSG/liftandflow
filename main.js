@@ -116,7 +116,7 @@ let cards = () => {
             <h3>${dato.peso} kg</h3>
             <h3>${dato.alturaCm} cm</h3>
             <h3>${dato.edad} años</h3>
-            <h3> Sexo ${dato.sexo}</h3>
+            <h3>Sexo ${dato.sexo}</h3>
         </div>`;
         pantallaObjeto.innerHTML += modelo;
     });

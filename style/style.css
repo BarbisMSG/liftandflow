@@ -55,12 +55,14 @@ main {
     align-items: center;
     height: calc(100vh - 140px);
     width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 /*p de la pantalla inicial. Explica TMB*/
 main p {
     font-family: "Roboto", sans-serif;
-    font-size: 15px;
+    font-size: 18px;
     text-align: center;
     margin-top: 5px;
 }
@@ -172,9 +174,7 @@ footer {
 }
 
 /*Media query*/
-@media only screen and (max-width: 767px),
-    (orientation: landscape),
-    screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) {
+@media only screen and (max-width: 767px) {
     /*H1 en el Header*/
     h1 {
         font-family: "Sedgwick Ave Display", cursive;
