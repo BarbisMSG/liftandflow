@@ -51,6 +51,31 @@
             content="https://liftsandflow.web.app/img/lyf.webp"
         />
         <meta type="twitter:url" content="https://liftsandflow.web.app/" />
+        <!-- Facebook Meta Tags -->
+        <meta property="og:url" content="https://liftsandflow.web.app/" />
+        <meta property="og:title" content="Lift & Flow" />
+        <meta
+            property="og:description"
+            content="Calculadora calorías para déficit y superavit calórico"
+        />
+        <meta
+            property="og:image"
+            content="https://liftsandflow.web.app/img/lyf.webp"
+        />
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="liftsandflow.web.app" />
+        <meta property="twitter:url" content="https://liftsandflow.web.app/" />
+        <meta name="twitter:title" content="Lift & Flow" />
+        <meta
+            name="twitter:description"
+            content="Calculadora calorías para déficit y superavit calórico"
+        />
+        <meta
+            name="twitter:image"
+            content="https://liftsandflow.web.app/img/lyf.webp"
+        />
         <!--Roboto -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -99,18 +124,25 @@
         <section id="formularioDatos" class="formulario">
             <h2 class="h2">Obtené tu cálculo calórico</h2>
             <label for="nombre" id="labelNombre">Nombre</label>
-            <input type="text" id="nombre" />
+            <input type="text" id="nombre" placeholder="Nombre" />
             <label for="peso" id="labelPeso">Peso</label>
-            <input type="number" id="peso" />
-            <label for="alturaCm" id="labelAltura">Altura en cm</label>
-            <input type="number" id="alturaCm" />
+            <input type="number" id="peso" placeholder="Peso en kilos" />
+            <label for="alturaCm" id="labelAltura">Altura</label>
+            <input type="number" id="alturaCm" placeholder="Altura en cm" />
             <label for="edad" id="labelEdad">Edad</label>
-            <input type="number" id="edad" />
+            <input type="number" id="edad" placeholder="Edad" />
             <label for="sexo" id="labelSexo">Sexo</label>
             <select name="sexo" id="sexo">
                 <option value=""></option>
                 <option value="F">Femenino</option>
                 <option value="M">Masculino</option>
+            </select>
+            <label for="Nivel actividad">Nivel actividad</label>
+            <select name="actividad" id="nivelActividad">
+                <option value=""></option>
+                <option value="baja">Baja</option>
+                <option value="media">Media</option>
+                <option value="alta">Alta</option>
             </select>
             <button id="btnIngresoDatos">Confirmar datos</button>
         </section>
