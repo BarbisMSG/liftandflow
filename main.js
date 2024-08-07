@@ -10,16 +10,21 @@ let header = document.getElementById("header");
 let main = document.getElementById("main");
 let ingresarFormulario = document.getElementById("ingresarFormulario");
 let formularioDatos = document.getElementById("formularioDatos");
-let nombre = document.getElementById("nombre");
 let labelNombre = document.getElementById("labelNombre");
-let peso = document.getElementById("peso");
+let nombre = document.getElementById("nombre");
 let labelPeso = document.getElementById("labelPeso");
-let alturaCm = document.getElementById("alturaCm");
+let peso = document.getElementById("peso");
 let labelAltura = document.getElementById("labelAltura");
-let edad = document.getElementById("edad");
+let alturaCm = document.getElementById("alturaCm");
 let labelEdad = document.getElementById("labelEdad");
-let sexo = document.getElementById("sexo");
+let edad = document.getElementById("edad");
 let labelSexo = document.getElementById("labelSexo");
+let sexo = document.getElementById("sexo");
+let labelIntensidad = document.getElementById("labelIntensidad");
+let labelBaja = document.getElementById("labelBaja");
+let labelMedia = document.getElementById("labelMedia");
+let labelAlta = document.getElementById("labelAlta");
+let nivelActividad = document.getElementById("nivelActividad");
 let btnIngresoDatos = document.getElementById("btnIngresoDatos");
 let resultados = document.getElementById("resultados");
 let calculoResultado = document.getElementById("calculoResultado");
@@ -50,6 +55,10 @@ modoNoche.addEventListener("click", () => {
     labelAltura.classList.toggle("modoNoche");
     labelEdad.classList.toggle("modoNoche");
     labelSexo.classList.toggle("modoNoche");
+    labelIntensidad.classList.toggle("modoNoche");
+    labelBaja.classList.toggle("modoNoche");
+    labelMedia.classList.toggle("modoNoche");
+    labelAlta.classList.toggle("modoNoche");
     resultadoProteina.classList.toggle("modoNoche");
     resultadoCalorias.classList.toggle("modoNoche");
     resultadoProteina.classList.remove("resultadoCalculadora");
@@ -76,7 +85,8 @@ btnIngresoDatos.addEventListener("click", () => {
         sexo.value == "" ||
         peso.value <= 0 ||
         alturaCm <= 0 ||
-        edad.value <= 0
+        edad.value <= 0 ||
+        nivelActividad.value <= 0
     ) {
         alert("Por favor, completá todos los campos con datos válidos");
     } else {
@@ -90,9 +100,10 @@ btnIngresoDatos.addEventListener("click", () => {
         let dato = {
             nombre: nombre.value,
             peso: parseFloat(peso.value),
-            alturaCm: alturaCm.value,
-            edad: edad.value,
+            alturaCm: parseFloat(alturaCm.value),
+            edad: parseFloat(edad.value),
             sexo: sexo.value,
+            actividad: nivelActividad.value,
             id: "persona" + count,
         };
         datos.push(dato);
@@ -102,6 +113,7 @@ btnIngresoDatos.addEventListener("click", () => {
         alturaCm.value = "";
         edad.value = "";
         sexo.value = "";
+        nivelActividad.value = "";
         cards();
     }
 });
@@ -124,40 +136,100 @@ let cards = () => {
 
 //Const deficit calórico
 const deficitCalorico = (dato) => {
-    // Convierte número
-    const pesoNumerico = parseFloat(dato.peso);
-    const proteinaDiaria = pesoNumerico * 1.6;
-    const edadDeficit = parseFloat(dato.edad);
-    const alturaDeficit = parseFloat(dato.alturaCm);
     // Muestra el resultado en pantalla con resultadoCalculadora instanciado
-    if (dato.sexo == "F") {
+    if (dato.sexo == "F" || dato.actividad == "baja") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
-            proteinaDiaria.toFixed(0) +
+            (dato.peso * 1.6).toFixed(0) +
             " gramos diarios";
         //Calcula TMB al que le resta 500 calorias para mujeres
         resultadoCalorias.innerHTML =
             "Tu consumo de calorías diarias debe ser " +
             (
                 447.593 +
-                9.247 * pesoNumerico +
-                3.098 * alturaDeficit -
-                4.33 * edadDeficit -
+                9.247 * dato.peso +
+                3.098 * dato.altura -
+                4.33 * dato.edad -
                 500
             ).toFixed(0);
-    } else {
+    }
+    if (dato.sexo == "F" || dato.actividad == "media") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
-            proteinaDiaria.toFixed(0) +
+            (dato.peso * 2.2).toFixed(0) +
+            " gramos diarios";
+        //Calcula TMB al que le resta 500 calorias para mujeres
+        resultadoCalorias.innerHTML =
+            "Tu consumo de calorías diarias debe ser " +
+            (
+                447.593 +
+                9.247 * dato.peso +
+                3.098 * dato.altura -
+                4.33 * dato.edad -
+                500
+            ).toFixed(0);
+    }
+    if (dato.sexo == "F" || dato.actividad == "alta") {
+        resultadoProteina.innerHTML =
+            "Tu cálculo de proteína es de " +
+            (dato.peso * 3.3).toFixed(0) +
+            " gramos diarios";
+        //Calcula TMB al que le resta 500 calorias para mujeres
+        resultadoCalorias.innerHTML =
+            "Tu consumo de calorías diarias debe ser " +
+            (
+                447.593 +
+                9.247 * dato.peso +
+                3.098 * dato.altura -
+                4.33 * dato.edad -
+                500
+            ).toFixed(0);
+    }
+    if (dato.sexo == "M" || dato.actividad == "baja") {
+        resultadoProteina.innerHTML =
+            "Tu cálculo de proteína es de " +
+            (dato.peso * 1.6).toFixed(0) +
             " gramos diarios";
         //Calcula TMB al que le resta 500 calorias para hombres
         resultadoCalorias.innerHTML =
             "Tu consumo de calorías diarias debe ser " +
             (
                 88.362 +
-                13.397 * pesoNumerico +
-                4.799 * alturaDeficit -
-                5.677 * edadDeficit -
+                13.397 * dato.peso +
+                4.799 * dato.altura -
+                5.677 * dato.edad -
+                500
+            ).toFixed(0);
+    }
+    if (dato.sexo == "M" || dato.actividad == "media") {
+        resultadoProteina.innerHTML =
+            "Tu cálculo de proteína es de " +
+            (dato.peso * 2.2).toFixed(0) +
+            " gramos diarios";
+        //Calcula TMB al que le resta 500 calorias para hombres
+        resultadoCalorias.innerHTML =
+            "Tu consumo de calorías diarias debe ser " +
+            (
+                88.362 +
+                13.397 * dato.peso +
+                4.799 * dato.altura -
+                5.677 * dato.edad -
+                500
+            ).toFixed(0);
+    }
+    if (dato.sexo == "M" || dato.actividad == "alta") {
+        resultadoProteina.innerHTML =
+            "Tu cálculo de proteína es de " +
+            (dato.peso * 3.3).toFixed(0) +
+            " gramos diarios";
+        //Calcula TMB al que le resta 500 calorias para hombres
+        resultadoCalorias.innerHTML =
+            "Tu consumo de calorías diarias debe ser " +
+            (
+                88.362 +
+                13.397 * dato.peso +
+                4.799 * dato.altura -
+                5.677 * dato.edad -
                 500
             ).toFixed(0);
     }
@@ -165,40 +237,97 @@ const deficitCalorico = (dato) => {
 
 //Const superavit calórico
 const superavitCalorico = (dato) => {
-    // Convierte número
-    const pesoNumerico = parseFloat(dato.peso);
-    const proteinaDiaria = pesoNumerico * 1.6;
-    const edadDeficit = parseFloat(dato.edad);
-    const alturaDeficit = parseFloat(dato.alturaCm);
     // Muestra el resultado en pantalla con resultadoCalculadora instanciado
-    if (dato.sexo == "F") {
+    if (dato.sexo == "F" || dato.actividad == "baja") {
         resultadoProteina.innerHTML =
-            "Tu cálculo de proteína es de " +
-            proteinaDiaria.toFixed(0) +
-            " gramos diarios";
+            "Tu cálculo de proteína es de " + (dato.peso * 1.6).toFixed(0);
+        (" gramos diarios");
         //Calcula TMB al que le suma 500 calorias
         resultadoCalorias.innerHTML =
             "Tu consumo de calorías diarias debe ser " +
             (
                 447.593 +
-                9.247 * pesoNumerico +
-                3.098 * alturaDeficit -
-                4.33 * edadDeficit +
+                9.247 * dato.peso +
+                3.098 * dato.altura -
+                4.33 * dato.edad +
                 500
             ).toFixed(0);
-    } else {
+    }
+    if (dato.sexo == "F" || dato.actividad == "media") {
+        resultadoProteina.innerHTML =
+            "Tu cálculo de proteína es de " + (dato.peso * 2.2).toFixed(0);
+        (" gramos diarios");
+        //Calcula TMB al que le suma 500 calorias
+        resultadoCalorias.innerHTML =
+            "Tu consumo de calorías diarias debe ser " +
+            (
+                447.593 +
+                9.247 * dato.peso +
+                3.098 * dato.altura -
+                4.33 * dato.edad +
+                500
+            ).toFixed(0);
+    }
+    if (dato.sexo == "F" || dato.actividad == "alta") {
+        resultadoProteina.innerHTML =
+            "Tu cálculo de proteína es de " + (dato.peso * 3.3).toFixed(0);
+        (" gramos diarios");
+        //Calcula TMB al que le suma 500 calorias
+        resultadoCalorias.innerHTML =
+            "Tu consumo de calorías diarias debe ser " +
+            (
+                447.593 +
+                9.247 * dato.peso +
+                3.098 * dato.altura -
+                4.33 * dato.edad +
+                500
+            ).toFixed(0);
+    }
+    if (dato.sexo == "M" || dato.actividad == "baja") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
-            proteinaDiaria.toFixed(0) +
+            (dato.peso * 1.6).toFixed(0) +
             " gramos diarios";
         //Calcula TMB al que se le suma 500 calorias
         resultadoCalorias.innerHTML =
             "Tu consumo de calorías diarias debe ser " +
             (
                 88.362 +
-                13.397 * pesoNumerico +
-                4.799 * alturaDeficit -
-                5.677 * edadDeficit +
+                13.397 * dato.peso +
+                4.799 * dato.altura -
+                5.677 * dato.edad +
+                500
+            ).toFixed(0);
+    }
+    if (dato.sexo == "M" || dato.actividad == "media") {
+        resultadoProteina.innerHTML =
+            "Tu cálculo de proteína es de " +
+            (dato.peso * 2.2).toFixed(0) +
+            " gramos diarios";
+        //Calcula TMB al que se le suma 500 calorias
+        resultadoCalorias.innerHTML =
+            "Tu consumo de calorías diarias debe ser " +
+            (
+                88.362 +
+                13.397 * dato.peso +
+                4.799 * dato.altura -
+                5.677 * dato.edad +
+                500
+            ).toFixed(0);
+    }
+    if (dato.sexo == "M" || dato.actividad == "alta") {
+        resultadoProteina.innerHTML =
+            "Tu cálculo de proteína es de " +
+            (dato.peso * 3.3).toFixed(0) +
+            " gramos diarios";
+        //Calcula TMB al que se le suma 500 calorias
+        resultadoCalorias.innerHTML =
+            "Tu consumo de calorías diarias debe ser " +
+            (
+                88.362 +
+                13.397 * dato.peso +
+                4.799 * dato.altura -
+                5.677 * dato.edad +
                 500
             ).toFixed(0);
     }
