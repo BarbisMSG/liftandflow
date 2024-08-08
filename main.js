@@ -148,7 +148,7 @@ const deficitCalorico = (dato) => {
             (
                 447.593 +
                 9.247 * dato.peso +
-                3.098 * dato.altura -
+                3.098 * dato.alturaCm -
                 4.33 * dato.edad -
                 500
             ).toFixed(0);
@@ -164,7 +164,7 @@ const deficitCalorico = (dato) => {
             (
                 447.593 +
                 9.247 * dato.peso +
-                3.098 * dato.altura -
+                3.098 * dato.alturaCm -
                 4.33 * dato.edad -
                 500
             ).toFixed(0);
@@ -180,7 +180,7 @@ const deficitCalorico = (dato) => {
             (
                 447.593 +
                 9.247 * dato.peso +
-                3.098 * dato.altura -
+                3.098 * dato.alturaCm -
                 4.33 * dato.edad -
                 500
             ).toFixed(0);
@@ -196,7 +196,7 @@ const deficitCalorico = (dato) => {
             (
                 88.362 +
                 13.397 * dato.peso +
-                4.799 * dato.altura -
+                4.799 * dato.alturaCm -
                 5.677 * dato.edad -
                 500
             ).toFixed(0);
@@ -212,7 +212,7 @@ const deficitCalorico = (dato) => {
             (
                 88.362 +
                 13.397 * dato.peso +
-                4.799 * dato.altura -
+                4.799 * dato.alturaCm -
                 5.677 * dato.edad -
                 500
             ).toFixed(0);
@@ -228,7 +228,7 @@ const deficitCalorico = (dato) => {
             (
                 88.362 +
                 13.397 * dato.peso +
-                4.799 * dato.altura -
+                4.799 * dato.alturaCm -
                 5.677 * dato.edad -
                 500
             ).toFixed(0);
@@ -248,7 +248,7 @@ const superavitCalorico = (dato) => {
             (
                 447.593 +
                 9.247 * dato.peso +
-                3.098 * dato.altura -
+                3.098 * dato.alturaCm -
                 4.33 * dato.edad +
                 500
             ).toFixed(0);
@@ -263,7 +263,7 @@ const superavitCalorico = (dato) => {
             (
                 447.593 +
                 9.247 * dato.peso +
-                3.098 * dato.altura -
+                3.098 * dato.alturaCm -
                 4.33 * dato.edad +
                 500
             ).toFixed(0);
@@ -278,7 +278,7 @@ const superavitCalorico = (dato) => {
             (
                 447.593 +
                 9.247 * dato.peso +
-                3.098 * dato.altura -
+                3.098 * dato.alturaCm -
                 4.33 * dato.edad +
                 500
             ).toFixed(0);
@@ -294,7 +294,7 @@ const superavitCalorico = (dato) => {
             (
                 88.362 +
                 13.397 * dato.peso +
-                4.799 * dato.altura -
+                4.799 * dato.alturaCm -
                 5.677 * dato.edad +
                 500
             ).toFixed(0);
@@ -310,7 +310,7 @@ const superavitCalorico = (dato) => {
             (
                 88.362 +
                 13.397 * dato.peso +
-                4.799 * dato.altura -
+                4.799 * dato.alturaCm -
                 5.677 * dato.edad +
                 500
             ).toFixed(0);
@@ -326,7 +326,7 @@ const superavitCalorico = (dato) => {
             (
                 88.362 +
                 13.397 * dato.peso +
-                4.799 * dato.altura -
+                4.799 * dato.alturaCm -
                 5.677 * dato.edad +
                 500
             ).toFixed(0);

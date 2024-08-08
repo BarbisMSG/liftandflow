@@ -181,7 +181,12 @@ footer {
 }
 
 /*Media query*/
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 600px) {
+    header,
+    footer {
+        height: 60px;
+    }
+
     /*H1 en el Header*/
     h1 {
         font-family: "Sedgwick Ave Display", cursive;
@@ -191,6 +196,9 @@ footer {
     /*Img izquierda Header*/
     .lyf {
         cursor: auto;
+        width: 60px;
+        height: 60px;
+        margin: 2px;
     }
 
     /*btn modoNoche*/
@@ -214,7 +222,7 @@ footer {
         font-family: "Roboto", sans-serif;
         font-size: 13px;
         text-align: center;
-        margin-top: 5px;
+        margin: 7px;
     }
 
     /*h2 Bienvenida*/
@@ -240,8 +248,7 @@ footer {
     }
 
     .cards {
-        width: 300px;
-        height: 100px;
+        width: 100%;
         padding: 5px;
         border-radius: 5px;
         border: solid 3px black;
