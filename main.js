@@ -106,7 +106,6 @@ btnIngresoDatos.addEventListener("click", () => {
             id: "persona" + count,
         };
         datos.push(dato);
-        console.log("datos ingresados");
         nombre.value = "";
         peso.value = "";
         alturaCm.value = "";
@@ -151,16 +150,6 @@ const deficitCalorico = (dato) => {
                 4.33 * dato.edad -
                 500
             ).toFixed(0);
-        console.log(
-            (
-                447.593 +
-                9.247 * dato.peso +
-                3.098 * dato.alturaCm -
-                4.33 * dato.edad -
-                500
-            ).toFixed(0)
-        );
-        console.log(resultadoCalorias.innerHTML);
     }
     if (dato.sexo == "F" && dato.actividad == "media") {
         resultadoProteina.innerHTML =
@@ -209,15 +198,6 @@ const deficitCalorico = (dato) => {
                 5.677 * dato.edad -
                 500
             ).toFixed(0);
-        console.log(
-            (
-                88.362 +
-                13.397 * dato.peso +
-                4.799 * dato.alturaCm -
-                5.677 * dato.edad -
-                500
-            ).toFixed(0)
-        );
     }
     if (dato.sexo == "M" && dato.actividad == "media") {
         resultadoProteina.innerHTML =
@@ -317,15 +297,6 @@ const superavitCalorico = (dato) => {
                 5.677 * dato.edad +
                 500
             ).toFixed(0);
-        console.log(
-            (
-                88.362 +
-                13.397 * dato.peso +
-                4.799 * dato.alturaCm -
-                5.677 * dato.edad +
-                500
-            ).toFixed(0)
-        );
     }
     if (dato.sexo == "M" && dato.actividad == "media") {
         resultadoProteina.innerHTML =
