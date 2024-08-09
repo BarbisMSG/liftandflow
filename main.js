@@ -70,7 +70,6 @@ ingresarFormulario.addEventListener("click", () => {
     formularioDatos.style.display = "flex";
     main.style.display = "none";
     resultados.style.display = "none";
-    datos = [];
     resultadoCalorias.innerHTML = " ";
     resultadoProteina.innerHTML = " ";
 });
@@ -137,7 +136,7 @@ let cards = () => {
 //Const deficit calórico
 const deficitCalorico = (dato) => {
     // Muestra el resultado en pantalla con resultadoCalculadora instanciado
-    if (dato.sexo == "F" || dato.actividad == "baja") {
+    if (dato.sexo == "F" && dato.actividad == "baja") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
             (dato.peso * 1.6).toFixed(0) +
@@ -152,8 +151,18 @@ const deficitCalorico = (dato) => {
                 4.33 * dato.edad -
                 500
             ).toFixed(0);
+        console.log(
+            (
+                447.593 +
+                9.247 * dato.peso +
+                3.098 * dato.alturaCm -
+                4.33 * dato.edad -
+                500
+            ).toFixed(0)
+        );
+        console.log(resultadoCalorias.innerHTML);
     }
-    if (dato.sexo == "F" || dato.actividad == "media") {
+    if (dato.sexo == "F" && dato.actividad == "media") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
             (dato.peso * 2.2).toFixed(0) +
@@ -169,7 +178,7 @@ const deficitCalorico = (dato) => {
                 500
             ).toFixed(0);
     }
-    if (dato.sexo == "F" || dato.actividad == "alta") {
+    if (dato.sexo == "F" && dato.actividad == "alta") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
             (dato.peso * 3.3).toFixed(0) +
@@ -185,7 +194,7 @@ const deficitCalorico = (dato) => {
                 500
             ).toFixed(0);
     }
-    if (dato.sexo == "M" || dato.actividad == "baja") {
+    if (dato.sexo == "M" && dato.actividad == "baja") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
             (dato.peso * 1.6).toFixed(0) +
@@ -200,8 +209,17 @@ const deficitCalorico = (dato) => {
                 5.677 * dato.edad -
                 500
             ).toFixed(0);
+        console.log(
+            (
+                88.362 +
+                13.397 * dato.peso +
+                4.799 * dato.alturaCm -
+                5.677 * dato.edad -
+                500
+            ).toFixed(0)
+        );
     }
-    if (dato.sexo == "M" || dato.actividad == "media") {
+    if (dato.sexo == "M" && dato.actividad == "media") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
             (dato.peso * 2.2).toFixed(0) +
@@ -217,7 +235,7 @@ const deficitCalorico = (dato) => {
                 500
             ).toFixed(0);
     }
-    if (dato.sexo == "M" || dato.actividad == "alta") {
+    if (dato.sexo == "M" && dato.actividad == "alta") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
             (dato.peso * 3.3).toFixed(0) +
@@ -238,10 +256,11 @@ const deficitCalorico = (dato) => {
 //Const superavit calórico
 const superavitCalorico = (dato) => {
     // Muestra el resultado en pantalla con resultadoCalculadora instanciado
-    if (dato.sexo == "F" || dato.actividad == "baja") {
+    if (dato.sexo == "F" && dato.actividad == "baja") {
         resultadoProteina.innerHTML =
-            "Tu cálculo de proteína es de " + (dato.peso * 1.6).toFixed(0);
-        (" gramos diarios");
+            "Tu cálculo de proteína es de " +
+            (dato.peso * 1.6).toFixed(0) +
+            " gramos diarios";
         //Calcula TMB al que le suma 500 calorias
         resultadoCalorias.innerHTML =
             "Tu consumo de calorías diarias debe ser " +
@@ -253,10 +272,10 @@ const superavitCalorico = (dato) => {
                 500
             ).toFixed(0);
     }
-    if (dato.sexo == "F" || dato.actividad == "media") {
+    if (dato.sexo == "F" && dato.actividad == "media") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " + (dato.peso * 2.2).toFixed(0);
-        (" gramos diarios");
+        +" gramos diarios";
         //Calcula TMB al que le suma 500 calorias
         resultadoCalorias.innerHTML =
             "Tu consumo de calorías diarias debe ser " +
@@ -268,10 +287,10 @@ const superavitCalorico = (dato) => {
                 500
             ).toFixed(0);
     }
-    if (dato.sexo == "F" || dato.actividad == "alta") {
+    if (dato.sexo == "F" && dato.actividad == "alta") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " + (dato.peso * 3.3).toFixed(0);
-        (" gramos diarios");
+        +" gramos diarios";
         //Calcula TMB al que le suma 500 calorias
         resultadoCalorias.innerHTML =
             "Tu consumo de calorías diarias debe ser " +
@@ -283,7 +302,7 @@ const superavitCalorico = (dato) => {
                 500
             ).toFixed(0);
     }
-    if (dato.sexo == "M" || dato.actividad == "baja") {
+    if (dato.sexo == "M" && dato.actividad == "baja") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
             (dato.peso * 1.6).toFixed(0) +
@@ -298,8 +317,17 @@ const superavitCalorico = (dato) => {
                 5.677 * dato.edad +
                 500
             ).toFixed(0);
+        console.log(
+            (
+                88.362 +
+                13.397 * dato.peso +
+                4.799 * dato.alturaCm -
+                5.677 * dato.edad +
+                500
+            ).toFixed(0)
+        );
     }
-    if (dato.sexo == "M" || dato.actividad == "media") {
+    if (dato.sexo == "M" && dato.actividad == "media") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
             (dato.peso * 2.2).toFixed(0) +
@@ -315,7 +343,7 @@ const superavitCalorico = (dato) => {
                 500
             ).toFixed(0);
     }
-    if (dato.sexo == "M" || dato.actividad == "alta") {
+    if (dato.sexo == "M" && dato.actividad == "alta") {
         resultadoProteina.innerHTML =
             "Tu cálculo de proteína es de " +
             (dato.peso * 3.3).toFixed(0) +
@@ -353,10 +381,10 @@ btnSuperavit.addEventListener("click", () => {
 //Además vacía el array, ya que no hay localStorage
 //Limpia los p resultadosCalorias y resultadosProteinas
 btnVolver.addEventListener("click", () => {
+    datos = [];
     formularioDatos.style.display = "flex";
     main.style.display = "none";
     resultados.style.display = "none";
-    datos = [];
     resultadoCalorias.innerHTML = " ";
     resultadoProteina.innerHTML = " ";
 });
